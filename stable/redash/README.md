@@ -85,7 +85,7 @@ The following table lists the configurable parameters of the Redash chart and th
 | `postgresql.name`                      | Name used for PostgreSQL deployment                   | `postgresql`       |
 | `postgresql.imageTag`                  | PostgreSQL image version                              | `9.5.6-alpine`     |
 | `postgresql.postgresUser`              | PostgreSQL User to create                             | `redash`           |
-| `postgresql.postgresPassword`          | PostgreSQL Password for the new user                  | `redash`           |
+| `postgresql.postgresPassword`          | PostgreSQL Password for the new user                  | random 10 character long alphanumeric string |
 | `postgresql.postgresDatabase`          | PostgreSQL Database to create                         | `redash`           |
 | `postgresql.persistence.enabled`       | Use a PVC to persist PostgreSQL data                  | `true`             |
 | `postgresql.persistence.size`          | PVC Storage Request size for PostgreSQL volume        | `10Gi`             |
@@ -93,7 +93,7 @@ The following table lists the configurable parameters of the Redash chart and th
 | `postgresql.persistence.storageClass`  | Storage Class for PostgreSQL backing PVC              | `nil`<br>(uses alpha storage class annotation) |
 | `postgresql.persistence.existingClaim` | Provide an existing PostgreSQL PersistentVolumeClaim  | `nil`              |
 | `redis.name`                           | Name used for Redis deployment                        | `redis`            |
-| `redis.redisPassword`                  | Redis Password to use                                 | `redash`           |
+| `redis.redisPassword`                  | Redis Password to use                                 | random 10 character long alphanumeric string |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
