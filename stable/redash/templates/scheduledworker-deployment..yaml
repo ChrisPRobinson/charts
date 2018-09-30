@@ -29,18 +29,18 @@ spec:
           command: ["source /config/dynamicenv.sh && /app/bin/docker-entrypoint scheduler"]
           env:
             - name: REDASH_DATABASE_USER
-              value: {{ $.Values.postgresql.postgresUser }}
+              value: {{ .Values.postgresql.postgresUser }}
             - name: REDASH_DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "postgresql.secretName" . }}
+                  name: {{ template "redash.postgresql.secretName" . }}
                   key: postgres-password
             - name: REDASH_DATABASE_HOSTNAME
-              value: {{ template "redash.postgresql.fullname" }}
+              value: {{ template "redash.postgresql.fullname" . }}
             - name: REDASH_DATABASE_PORT
-              value: {{ $.Values.postgresql.service.port }}
+              value: {{ .Values.postgresql.service.port }}
             - name: REDASH_DATABASE_DB
-              value: {{ $.Values.postgresql.postgresDatabase }}
+              value: {{ .Values.postgresql.postgresDatabase }}
             - name: REDASH_REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -51,7 +51,7 @@ spec:
                 {{- end }}
                   key: redis-password
             - name: REDASH_REDIS_HOSTNAME
-              value: {{ template "redash.redis.fullname" }}
+              value: {{ template "redash.redis.fullname" . }}
             - name: REDASH_REDIS_PORT
               value: {{ $.Values.redis.master.port }}
             - name: REDASH_REDIS_DB

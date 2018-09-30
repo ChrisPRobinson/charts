@@ -54,6 +54,13 @@ Create a default fully qualified postgresql name.
 {{- end -}}
 
 {{/*
+Generate postgresql chart secret name
+*/}}
+{{- define "redash.postgresql.secretName" -}}
+{{ default (include "redash.postgresql.fullname" .) .Values.postgresql.existingSecret }}
+{{- end -}}
+
+{{/*
 Create a default fully qualified redis name.
 */}}
 {{- define "redash.redis.fullname" -}}

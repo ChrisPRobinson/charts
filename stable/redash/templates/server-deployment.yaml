@@ -41,10 +41,10 @@ spec:
             - name: REDASH_DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "postgresql.secretName" . }}
+                  name: {{ template "redash.postgresql.secretName" . }}
                   key: postgres-password
             - name: REDASH_DATABASE_HOSTNAME
-              value: {{ template "redash.postgresql.fullname" }}
+              value: {{ template "redash.postgresql.fullname" . }}
             - name: REDASH_DATABASE_PORT
               value: {{ $.Values.postgresql.service.port }}
             - name: REDASH_DATABASE_DB
@@ -59,11 +59,11 @@ spec:
                 {{- end }}
                   key: redis-password
             - name: REDASH_REDIS_HOSTNAME
-              value: {{ template "redash.redis.fullname" }}
+              value: {{ template "redash.redis.fullname" . }}
             - name: REDASH_REDIS_PORT
-              value: {{ $.Values.redis.master.port }}
+              value: {{ .Values.redis.master.port }}
             - name: REDASH_REDIS_DB
-              value: {{ $.Values.redis.databaseNumber }}
+              value: {{ .Values.redis.databaseNumber }}
           {{- range $key, $value := .Values.env }}
             - name: "{{ $key }}"
               value: "{{ $value }}"
@@ -88,10 +88,10 @@ spec:
             - name: REDASH_DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "postgresql.secretName" . }}
+                  name: {{ template "redash.postgresql.secretName" . }}
                   key: postgres-password
             - name: REDASH_DATABASE_HOSTNAME
-              value: {{ template "redash.postgresql.fullname" }}
+              value: {{ template "redash.postgresql.fullname" . }}
             - name: REDASH_DATABASE_PORT
               value: {{ $.Values.postgresql.service.port }}
             - name: REDASH_DATABASE_DB
@@ -106,7 +106,7 @@ spec:
                 {{- end }}
                   key: redis-password
             - name: REDASH_REDIS_HOSTNAME
-              value: {{ template "redash.redis.fullname" }}
+              value: {{ template "redash.redis.fullname" . }}
             - name: REDASH_REDIS_PORT
               value: {{ $.Values.redis.master.port }}
             - name: REDASH_REDIS_DB

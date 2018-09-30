@@ -180,3 +180,5 @@ redis:
   ##
   # password:
   databaseNumber: 0
+  master:
+    port: 6379
